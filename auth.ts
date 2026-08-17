@@ -1,12 +1,11 @@
 
-
-import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import connectDB from "@/lib/db"; 
 import { compare } from "bcryptjs"
-import { CredentialsSignin } from "next-auth";
+import NextAuth, { CredentialsSignin } from "next-auth";
 import User from "@/models/User";
 import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
 
 
 export const { handlers, signIn, signOut, auth } = NextAuth({ 
@@ -15,6 +14,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         Github({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        }),
+
+        Google({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
 
         Credentials({
@@ -64,5 +68,54 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
     pages: {
         signIn: "/login"
+    },
+
+    callbacks: {
+        async session({session, token}) {
+            if(token?.sub && token?.role) {
+
+                session.user.id = token.sub;
+
+                session.user.role = token.role;
+            }
+
+            return session
+        }
+    },
+
+
+    async jwt({token, user}) {
+        if(user) {
+            token.role = user.role
+        }
+
+        return token
+    },
+
+    signIn: async({user, account}) => {
+        if(account?.provider === "google") { 
+            try {
+                const { name, email, image, id} = user;
+
+                await connectDB();
+
+                const alreadyUser = await User.findOne({email});
+
+                if(!alreadyUser) {
+                    await User.create({ email, name, image, authProviderId: id})
+                } else {
+                    return true;
+                }
+
+            } catch (error) {
+                throw new Error("Error while creating user", error)
+            }
+
+            if(account?.provider === "credentials") {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 });

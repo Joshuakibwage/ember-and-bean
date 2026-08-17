@@ -7,9 +7,25 @@ import {
     TableRow,
     TableCell
 } from "@/components/ui/table";
+import {getSession} from "@/lib/getSession";
+import { redirect } from "next/navigation";
+import { fetchAllUsers } from "@/actions/user";
 
 
-const Settings = () => {
+const Settings = async() => {
+
+  const session = await getSession()
+
+  const user = session?.user ; 
+
+  if(!user) return redirect("/login");
+
+  if(user?.role !== "admin") return redirect("/private/dashboard");
+
+  const allUsers = await fetchAllUsers();
+
+
+
   return (
     <div className="container mx-auto ">
       <h1>Users</h1>
@@ -21,14 +37,17 @@ const Settings = () => {
             <TableHead>Action</TableHead>
         </TableHeader>
 
-         <TableBody>
-            <TableRow>
-                <TableCell className="font-medium">INV001</TableCell>
-                <TableCell>Paid</TableCell>
-                <TableCell>Credit Card</TableCell>
-                <TableCell className="text-right">$250.00</TableCell>
-            </TableRow>
-        </TableBody>
+         <tbody>
+            {
+              allUsers.map((user) => {
+                <tr key={user._id}>
+                  <td className="font-medium">{user.firstName}</td>
+                  <td>{user,lastName}</td>
+                  
+                </tr>
+              })
+            }
+        </tbody>
       </Table>
     </div>
   )

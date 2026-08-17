@@ -3,7 +3,7 @@ import connectDB from "@/lib/db";
 import User from "@/models/User";
 import { redirect } from "next/navigation";
 import { hash } from "bcryptjs";
-import {signIn} from "@/auth";
+import {signIn, signOut} from "@/auth";
 import { CredentialsSignin } from "next-auth";
 
 
@@ -66,11 +66,36 @@ const register = async (formData: FormData) => {
 
 };
 
+async function logout() {
+  await signOut({
+    redirectTo: "/login",
+  });
+}
+
+
+const fetchAllUsers = async () => {
+
+    await connectDB()
+
+    const users = await User.find({});
+
+    return users;
+}
+
 
 async function loginWithGithub() {
+
     await signIn("github", {
           redirectTo: "/",
     })
 }
 
-export { register, login, loginWithGithub };
+async function loginWithGoogle() {
+
+    await signIn("google", {
+
+        redirectTo: "/",
+    })
+}
+
+export { register, login, loginWithGithub, loginWithGoogle, fetchAllUsers, logout };
