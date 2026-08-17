@@ -66,4 +66,11 @@ const register = async (formData: FormData) => {
 
 };
 
-export { register, login };
+
+async function loginWithGithub() {
+    await signIn("github", {
+          redirectTo: "/",
+    })
+}
+
+export { register, login, loginWithGithub };

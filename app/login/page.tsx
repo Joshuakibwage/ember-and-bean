@@ -6,7 +6,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Eye, EyeOff, Loader2 } from "lucide-react";
-import {login} from "@/actions/user";
+import {login, loginWithGithub } from "@/actions/user";
+
 
 
 const Login = () => {
@@ -71,40 +72,26 @@ const Login = () => {
             </p>
 
             {/* OAuth */}
-            <div className="mt-6 space-y-2.5">
+            <form 
+              // action={loginWithGithub} 
+              className="mt-6 space-y-2.5">
               <button
-                type="button"
-                // onClick={() => handleOAuth("google")}
-                // disabled={oauthLoading !== null}
-                className="flex h-11 w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-background text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:opacity-60"
+                type="submit"
+                className="flex h-11 w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-background text-sm font-medium text-foreground transition-colors hover:bg-muted"
               >
+                <GoogleMark />
                 Continue with Google
-                {/* {oauthLoading === "google" ? (
-                  <Loader2 className="animate-spin" size={16} />
-                ) : (
-                  <>
-                    <GoogleMark />
-                    Continue with Google
-                  </>
-                )} */}
               </button>
+            </form>
+            <form action={loginWithGithub}>
               <button
-                type="button"
-                // onClick={() => handleOAuth("github")}
-                // disabled={oauthLoading !== null}
-                className="flex h-11 w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-background text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:opacity-60"
+                type="submit"
+                className="flex h-11 w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-background text-sm font-medium text-foreground transition-colors hover:bg-muted"
               >
-                Continue with Github
-                {/* {oauthLoading === "github" ? (
-                  <Loader2 className="animate-spin" size={16} />
-                ) : (
-                  <>
-                    <GithubMark className="text-foreground" />
-                    Continue with GitHub
-                  </>
-                )} */}
+                <GithubMark className="text-foreground" />
+                Continue with GitHub
               </button>
-            </div>
+            </form>
 
             <div className="my-6 flex items-center gap-3">
               <div className="h-px flex-1 bg-border" />
