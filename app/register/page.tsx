@@ -7,16 +7,18 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Eye, EyeOff, Loader2 } from "lucide-react";
 
+import { register } from "@/actions/user";
+
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    //TODO: validate with zod, POST to /api/auth/register
-    setTimeout(() => setIsSubmitting(false), 1200);
-  };
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   //TODO: validate with zod, POST to /api/auth/register
+  //   setTimeout(() => setIsSubmitting(false), 1200);
+  // };
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-[#150e0a] px-4 py-16 flex items-center justify-center">
@@ -71,15 +73,15 @@ const Register = () => {
               Create an account to start earning stamps on every order.
             </p>
 
-            <form onSubmit={handleSubmit} className="mt-7 space-y-4">
+            <form action={register} className="mt-7 space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <Label htmlFor="firstName" className="text-xs font-medium uppercase tracking-wide text-[#6b584a]">
+                  <Label className="text-xs font-medium uppercase tracking-wide text-[#6b584a]">
                     First name
                   </Label>
                   <Input
-                    id="firstName"
-                    name="firstName"
+                    id="firstname"
+                    name="firstname"
                     type="text"
                     placeholder="John"
                     required
@@ -87,12 +89,12 @@ const Register = () => {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <Label htmlFor="lastName" className="text-xs font-medium uppercase tracking-wide text-[#6b584a]">
+                  <Label className="text-xs font-medium uppercase tracking-wide text-[#6b584a]">
                     Last name
                   </Label>
                   <Input
-                    id="lastName"
-                    name="lastName"
+                    id="lastname"
+                    name="lastname"
                     type="text"
                     placeholder="Doe"
                     required
@@ -142,17 +144,18 @@ const Register = () => {
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                // disabled={isSubmitting}
                 className="group mt-2 h-11 w-full rounded-xl bg-[#e8622c] text-white transition-colors hover:bg-[#d9531f]"
               >
-                {isSubmitting ? (
+                SignUp
+                {/* {isSubmitting ? (
                   <Loader2 className="animate-spin" size={16} />
                 ) : (
                   <>
                     Sign up
                     <ArrowRight size={16} className="ml-1.5 transition-transform group-hover:translate-x-0.5" />
                   </>
-                )}
+                )} */}
               </Button>
 
               <p className="pt-1 text-center text-xs text-[#8a7864]">

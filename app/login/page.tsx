@@ -6,23 +6,25 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowRight, Eye, EyeOff, Loader2 } from "lucide-react";
+import {login} from "@/actions/user";
+
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [oauthLoading, setOauthLoading] = useState<"google" | "github" | null>(null);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [oauthLoading, setOauthLoading] = useState<"google" | "github" | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // TODO: validate with zod, POST to /api/auth/login
-    setTimeout(() => setIsSubmitting(false), 1200);
-  };
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   // TODO: validate with zod, POST to /api/auth/login
+  //   setTimeout(() => setIsSubmitting(false), 1200);
+  // };
 
-  const handleOAuth = async (provider: "google" | "github") => {
-    setOauthLoading(provider);
-    // TODO: signIn(provider, { callbackUrl: "/" }) — next-auth
-  };
+  // const handleOAuth = async (provider: "google" | "github") => {
+  //   setOauthLoading(provider);
+  //   // TODO: signIn(provider, { callbackUrl: "/" }) — next-auth
+  // };
 
   return (
     <div className="relative min-h-screen w-full overflow-hidden bg-sidebar px-4 py-16 flex items-center justify-center">
@@ -72,33 +74,35 @@ const Login = () => {
             <div className="mt-6 space-y-2.5">
               <button
                 type="button"
-                onClick={() => handleOAuth("google")}
-                disabled={oauthLoading !== null}
+                // onClick={() => handleOAuth("google")}
+                // disabled={oauthLoading !== null}
                 className="flex h-11 w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-background text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:opacity-60"
               >
-                {oauthLoading === "google" ? (
+                Continue with Google
+                {/* {oauthLoading === "google" ? (
                   <Loader2 className="animate-spin" size={16} />
                 ) : (
                   <>
                     <GoogleMark />
                     Continue with Google
                   </>
-                )}
+                )} */}
               </button>
               <button
                 type="button"
-                onClick={() => handleOAuth("github")}
-                disabled={oauthLoading !== null}
+                // onClick={() => handleOAuth("github")}
+                // disabled={oauthLoading !== null}
                 className="flex h-11 w-full items-center justify-center gap-2.5 rounded-xl border border-border bg-background text-sm font-medium text-foreground transition-colors hover:bg-muted disabled:opacity-60"
               >
-                {oauthLoading === "github" ? (
+                Continue with Github
+                {/* {oauthLoading === "github" ? (
                   <Loader2 className="animate-spin" size={16} />
                 ) : (
                   <>
                     <GithubMark className="text-foreground" />
                     Continue with GitHub
                   </>
-                )}
+                )} */}
               </button>
             </div>
 
@@ -110,7 +114,7 @@ const Login = () => {
               <div className="h-px flex-1 bg-border" />
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form action={login} className="space-y-4">
               <div className="space-y-1.5">
                 <Label htmlFor="email" className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                   Email
@@ -165,17 +169,18 @@ const Login = () => {
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                // disabled={isSubmitting}
                 className="group mt-2 h-11 w-full rounded-xl"
               >
-                {isSubmitting ? (
+                Sign In
+                {/* {isSubmitting ? (
                   <Loader2 className="animate-spin" size={16} />
                 ) : (
                   <>
                     Sign in
                     <ArrowRight size={16} className="ml-1.5 transition-transform group-hover:translate-x-0.5" />
                   </>
-                )}
+                )} */}
               </Button>
             </form>
           </div>
