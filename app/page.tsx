@@ -8,18 +8,16 @@ const HomePage = () => {
       <HeroSection imageSrc="/Hero.jpg"/>
       <FeaturedMenu 
         items={[
-    {
-      id: "1",
-      slug: "ember-oat-latte",
-      name: "Ember Oat Latte",
-      price: "KSh 450",
-      description: "Double shot, steamed oat milk, a little cinnamon at the end.",
-      imageSrc: "/images/menu/ember-oat-latte.jpg",
-      tag: "Signature",
-    },
-    // ...
-  ]}
-    
+          {
+            id: "1",
+            slug: "ember-oat-latte",
+            name: "Ember Oat Latte",
+            price: "KSh 450",
+            description: "Double shot, steamed oat milk, a little cinnamon at the end.",
+            imageSrc: "/images/menu/ember-oat-latte.jpg",
+            tag: "Signature",
+          },
+        ]}
       />
     </section>
   );
