@@ -86,6 +86,9 @@
 
   --radius: 0.75rem;
 
+  --hero-overlay: oklch(0.12 0.03 40);
+
+
   /* sidebar stays espresso-dark even in light mode — coffee-bag-brown nav */
   --sidebar: oklch(0.2 0.035 40);
   --sidebar-foreground: oklch(0.95 0.02 75);
@@ -120,6 +123,8 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.68 0.18 42);
+
+  --hero-overlay: oklch(0.08 0.02 40);
 
   --chart-1: oklch(0.68 0.18 42);
   --chart-2: oklch(0.8 0.12 75);
