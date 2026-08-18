@@ -62,7 +62,7 @@ const HeroSection = ({ imageSrc, imageAlt = "Inside Ember & Bean" }: HeroProps) 
         </div>
 
         {/* status ticket — continues the ticket motif from auth/nav */}
-        <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 motion-safe:delay-200 relative shrink-0 rounded-2xl bg-card/95 px-5 py-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] backdrop-blur-sm">
+        <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 motion-safe:delay-200 relative shrink-0 rounded-md bg-card/95 px-5 py-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] backdrop-blur-sm">
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 motion-reduce:animate-none" />

@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 import Nav from "@/components/shared/Nav";
 
 const BeanMark = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <ellipse cx="12" cy="12" rx="9" ry="10" fill="currentColor" />
     <path d="M12 3.5c-2 3-2 5.5 0 8.5s2 5.5 0 8.5" stroke="var(--background)" strokeWidth="1.4" strokeLinecap="round" />
   </svg>
@@ -27,8 +27,11 @@ const Navbar = async () => {
         <nav className="container relative mx-auto flex items-center justify-between px-4 py-4">
           <Link href="/" className="flex items-center gap-2 text-foreground">
             <BeanMark />
-            <span className="font-script text-2xl md:text-4xl tracking-wide">Ember &amp;{"  "}Bean</span>
+            <span className="font-script text-2xl leading-none tracking-wide md:text-4xl">
+              Ember &amp; Bean
+            </span>
           </Link>
+
           <Nav user={user} />
         </nav>
       </header>
