@@ -1,7 +1,7 @@
 import connectDB from "@/lib/db";
 import MenuItem from "@/models/MenuItem";
 import FilterBar from "@/components/menu/FilterBar";
-
+import MenuGrid from "@/components/menu/MenuGrid";
 
 
 type SearchParams = Promise<{
@@ -15,11 +15,7 @@ export default async function MenuPage(
     { 
         searchParams 
     } : {
-        searchParams: Promise<{
-            category?: string; 
-            sort?: string; 
-            diet?: string}
-        >;
+        searchParams: SearchParams;
     }
 ) {
 
@@ -58,6 +54,8 @@ export default async function MenuPage(
                 activeDiet={diet}
                 activeSort={sort ?? "newest"}
             />
+
+            <MenuGrid items={JSON.parse(JSON.stringify(items))} />
         </div>
     );
 };

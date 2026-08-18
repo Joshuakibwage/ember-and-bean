@@ -21,7 +21,7 @@ const sorts = [
   { value: "newest", label: "Newest" },
   { value: "price-asc", label: "Price: low to high" },
   { value: "price-desc", label: "Price: high to low" },
-  { value: "name", label: "Name A - Z" },
+  { value: "name", label: "Name: A - Z" },
 ];
 
 type FilterBarProps = {
@@ -49,32 +49,40 @@ const FilterBar = ({ activeCategory, activeDiet, activeSort }: FilterBarProps ) 
 
         router.push(`${pathName}?${params.toString()}`, {scroll: false});
     }
+
+    const clearFilters = () => {
+        router.push(pathName, { scroll: false })
+    }
     
     return (
-        <div className="mb-8 fle flex-col gap-4 border-b border-border pb-6">
+        <div className="mb-8 flex flex-col gap-4 border-b border-border pb-6">
 
             <div className="flex flex-wrap items-center justify-between gap-4">
             {/* Categories filter */}
-                <div className="flex flex-wrap gap-2">
-                    {
-                        categories.map((cat) => (
-                            <Button 
-                                key={cat.value}
-                                type="button"
-                                onClick={() => updateParam("category", cat.value)}
-                                aria-pressed={activeCategory === cat.value}
-                                className={
-                                    `rounded-md border px-4 py-1.5 text-sm transition-colors cursor-pointer ${
+                <div className="flex flex-col gap-2">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-primary">
+                        Categories
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                        {
+                            categories.map((cat) => (
+                                <Button 
+                                    key={cat.value}
+                                    type="button"
+                                    onClick={() => updateParam("category", cat.value)}
+                                    aria-pressed={activeCategory === cat.value}
+                                    className={cn(
+                                        "cursor-pointer rounded-md border px-4 py-1.5 text-sm transition-colors",
                                         activeCategory === cat.value
-                                        ? "border-primary bg-primary text-primary-foreground" 
-                                        : "border-border bg-background text-muted-foreground hover:text-foreground"
-                                    }`
-                                }
-                            >
-                                {cat.label}
-                            </Button>
-                        ))
-                    }
+                                            ? "border-primary bg-primary text-primary-foreground"
+                                            : "border-border bg-background text-muted-foreground hover:text-foreground"
+                                    )}
+                                >
+                                    {cat.label}
+                                </Button>
+                            ))
+                        }
+                    </div>
                 </div>
 
                 {/* Sort */}
@@ -82,21 +90,21 @@ const FilterBar = ({ activeCategory, activeDiet, activeSort }: FilterBarProps ) 
                     Sort by
                     <select 
                         value={activeSort}
-                        onChange={() => updateParam("sort", e.target.value)}
+                        onChange={(e) => updateParam("sort", e.target.value)}
                         className={cn(
                             "rounded-md border border-border bg-background px-2 py-1.5 text-sm text-foreground ",
                             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer"
                         )}
                     >
                         {
-                            sorts.map((s) => {
+                            sorts.map((s) => (
                                 <option 
                                     key={s.value} 
                                     value={s.value}
                                 >
                                     {s.label}
                                 </option>
-                            })
+                            ))
                         }
                     </select>
                 </label>
@@ -104,24 +112,40 @@ const FilterBar = ({ activeCategory, activeDiet, activeSort }: FilterBarProps ) 
             </div>
 
             {/* Diet */}
-            <div className="flex flex-wrap gap-2">
-                {
-                    diets.map((d) => {
-                        <Button
-                            key={d.value}
-                            type="button"
-                            onClick={() => updateParam("diet", activeDiet === d.value ? null : d.value)}
-                            aria={activeDiet === d.value}
-                            className={
-                                `rounded-md border px-3 py-1 font-mono text-xs uppercase tracking-wide transition-colors ${ activeDiet === d.value 
-                                ? "border-primary bg-accent text-accent-foreground"
-                                : "border-border bg-background text-muted-foreground hover:text-foreground"}`
-                            }
-                        >
-                            {d.label}
-                        </Button>
-                    })
-                }
+            <div className="flex justify-between">
+                <div className="flex flex-col gap-2">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-primary">
+                        Dietary
+                    </span>
+                    <div className="flex flex-wrap gap-2">
+                        {
+                            diets.map((d) => (
+                                <Button
+                                    key={d.value}
+                                    type="button"
+                                    onClick={() => updateParam("diet", activeDiet === d.value ? null : d.value)}
+                                    aria={activeDiet === d.value}
+                                    className={
+                                        `rounded-md border px-3 py-1 font-mono text-xs uppercase tracking-wide transition-colors ${ activeDiet === d.value 
+                                        ? "border-primary bg-accent text-accent-foreground"
+                                        : "border-border bg-background text-muted-foreground hover:text-foreground"}`
+                                    }
+                                >
+                                    {d.label}
+                                </Button>
+                            ))
+                        }
+                    </div>
+                </div>
+            {/* Clear filters */}
+                <Button
+                    type="button"
+                    variant="ghost"
+                    onClick={clearFilters}
+                    className="shrink-0 bg-primary cursor-pointer text-primary-foreground transition-colors hover:bg-primary/80"
+                >
+                    Clear filters
+                </Button>
             </div>
 
         </div>
