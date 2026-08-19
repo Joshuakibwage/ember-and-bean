@@ -1,7 +1,9 @@
-import connectDB from "@/lib/db";
-import MenuItem from "@/models/MenuItem";
+
 import FilterBar from "@/components/menu/FilterBar";
-import MenuGrid from "@/components/menu/MenuGrid";
+import MenuGridSkeleton from "@/components/menu/MenuGridSkeleton";
+import { Suspense } from "react";
+import MenuResults from "@/components/menu/MenuResults";
+import ErrorBoundary from "@/components/ErrorBoundary";
 
 
 type SearchParams = Promise<{
@@ -12,31 +14,11 @@ type SearchParams = Promise<{
 
 
 export default async function MenuPage(
-    { 
-        searchParams 
-    } : {
-        searchParams: SearchParams;
-    }
+    {  searchParams } : {  searchParams: SearchParams;  }
 ) {
 
     const { category, sort, diet } = await searchParams;
-
-    await connectDB();
-
-    const query: Record<string, unknown> = { available: true };
-
-    if(category && category !== "all") query.category = category;
-    if(diet) query.dietaryTags = diet;
-
-    const sortMap: Record<string, Record<string, 1 | -1>> = {
-        "price-asc": {price: 1},
-        "price-desc": { price: -1 },
-        name: { name: 1 },
-        newest: { createdAt: -1 },
-    };
-
-    const items = await MenuItem.find(query).sort(sortMap[sort ?? "newest"]).lean();
-
+ 
     return (
         <div className="container mx-auto max-w-6xl px-4 py-12 sm:px-6">
             <div className="mb-8">
@@ -55,7 +37,21 @@ export default async function MenuPage(
                 activeSort={sort ?? "newest"}
             />
 
-            <MenuGrid items={JSON.parse(JSON.stringify(items))} />
+            <ErrorBoundary
+                title="We couldn't load the menu"
+                message="This is usually temporary. Try again in a moment!"
+            > 
+                <Suspense
+                    key={`${category}-${sort}-${diet}`}
+                    fallback={<MenuGridSkeleton count={6} />}
+                >
+                    <MenuResults
+                        category={category}
+                        sort={sort}
+                        diet={diet}
+                    />
+                </Suspense>
+            </ErrorBoundary>
         </div>
     );
 };

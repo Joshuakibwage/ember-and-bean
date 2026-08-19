@@ -48,13 +48,13 @@ const FeaturedMenu = ({ items }: FeaturedMenuProps) => {
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((item) => (
             <Link
-              key={item.id}
+              key={item._id}
               href={`/menu/${item.slug}`}
-              className="group rounded-3xl border border-border bg-card outline-none ring-ring ring-offset-2 ring-offset-background transition-shadow hover:shadow-lg focus-visible:ring-2"
+              className="group rounded-md border border-border bg-card outline-none ring-ring ring-offset-2 ring-offset-background transition-shadow hover:shadow-lg focus-visible:ring-2"
             >
-              <div className="relative aspect-[4/5] overflow-hidden rounded-t-3xl">
+              <div className="relative aspect-4/5 overflow-hidden rounded-t-md">
                 <Image
-                  src={item.imageSrc}
+                  src={item.imageUrl}
                   alt={item.name}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"

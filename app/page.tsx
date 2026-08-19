@@ -1,24 +1,26 @@
+import { Suspense } from "react";
+
 import HeroSection from "@/components/sections/HeroSection.tsx";
-import FeaturedMenu from "@/components/sections/FeaturedMenu.tsx";
+// import FeaturedMenu from "@/components/sections/FeaturedMenu.tsx";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import FeaturedMenuSkeleton from "@/components/sections/FeaturedMenuSkeleton";
+import FeaturedMenuSection from "@/components/sections/FeaturedMenuSection";
 
 
 const HomePage = () => {
   return (
     <section className="">
       <HeroSection imageSrc="/Hero.jpg"/>
-      <FeaturedMenu 
-        items={[
-          {
-            id: "1",
-            slug: "ember-oat-latte",
-            name: "Ember Oat Latte",
-            price: "KSh 450",
-            description: "Double shot, steamed oat milk, a little cinnamon at the end.",
-            imageSrc: "/images/menu/ember-oat-latte.jpg",
-            tag: "Signature",
-          },
-        ]}
-      />
+
+      <ErrorBoundary
+        title="Couldn't load today's menu."
+        message="The rest of the site is still here. Try refreshing this section"
+      >
+        <Suspense fallback={<FeaturedMenuSkeleton />}>
+          <FeaturedMenuSection />
+        </Suspense>
+      </ErrorBoundary>
+      {/* <FeaturedMenu /> */}
     </section>
   );
 }
