@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Public_Sans, Geist_Mono, Italianno } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/auth/Navbar";
+import { CartProvider } from "@/context/cartContext";
+
 
 const publicSans = Public_Sans({
   variable: "--font-sans",
@@ -31,8 +33,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${publicSans.variable} ${geistMono.variable} ${italianno.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
+        <CartProvider>
+          <Navbar />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

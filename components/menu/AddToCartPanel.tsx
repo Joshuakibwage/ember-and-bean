@@ -4,20 +4,32 @@ import { useState } from "react";
 import { Minus, Plus, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { MenuItem } from "@/types/menuItem";
+import { useCart } from "@/context/cartContext";
+import { cn } from "@/lib/utils";
+
 
 const AddToCartPanel = ({ item }: { item: MenuItem }) => {
     const [quantity, setQuantity] = useState(1);
     const [servedAs, setServedAs] = useState(item.servedAs?.[0]);
     const [justAdded, setJustAdded] = useState(false);
 
+    const { addItem } = useCart();
+
     const total = item.price * quantity;
 
     const handleAddToCart = () => {
-      // TODO: replace with real cart context — addItem({ ...item, quantity, servedAs })
-      console.log("Add to cart:", { slug: item.slug, quantity, servedAs });
+      addItem({
+        slug: item.slug,
+        name: item.name,
+        price: item.price,
+        imageUrl: item.imageUrl,
+        quantity,
+        servedAs,
+      });
       setJustAdded(true);
       setTimeout(() => setJustAdded(false), 1500);
     };
+
 
     return (
       <div className="mt-6 rounded-2xl border border-border bg-card p-5">
@@ -44,11 +56,12 @@ const AddToCartPanel = ({ item }: { item: MenuItem }) => {
                   type="button"
                   onClick={() => setServedAs(option)}
                   aria-pressed={servedAs === option}
-                  className={`rounded-full border px-4 py-1.5 text-sm capitalize transition-colors ${
+                  className={cn(
+                    "rounded-full border px-4 py-1.5 text-sm capitalize transition-colors",
                     servedAs === option
                       ? "border-primary bg-primary text-primary-foreground"
                       : "border-border bg-background text-muted-foreground hover:text-foreground"
-                  }`}
+                  )}
                 >
                   {option}
                 </button>
