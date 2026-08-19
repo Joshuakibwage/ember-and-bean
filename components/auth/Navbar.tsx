@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth } from "@/auth";
 import Nav from "@/components/shared/Nav";
+import CartIcon from "@/components/CartIcon";
 
 const BeanMark = () => (
   <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -32,7 +33,10 @@ const Navbar = async () => {
             </span>
           </Link>
 
-          <Nav user={user} />
+          <div className="flex items-center gap-2">
+            <CartIcon />
+            <Nav user={user} />
+          </div>
         </nav>
       </header>
     </>
