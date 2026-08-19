@@ -1,4 +1,3 @@
-// scripts/seed.ts
 import "dotenv/config";
 import connectDB from "@/lib/db";
 import MenuItem from "@/models/MenuItem";
@@ -10,9 +9,13 @@ const items = [
     slug: "ember-oat-latte",
     description: "Double shot, steamed oat milk, a little cinnamon at the end.",
     price: 450,
+    compareAtPrice: 550,
     category: "coffee",
     servedAs: ["hot", "iced"],
     dietaryTags: ["dairy-free"],
+    ingredients: ["Espresso", "Oat milk", "Cinnamon", "Cane sugar"],
+    allergens: [],
+    calories: 190,
     imageUrl: "/images/menu/ember-oat-latte.jpg",
   },
   {
@@ -23,6 +26,9 @@ const items = [
     category: "coffee",
     servedAs: ["hot"],
     dietaryTags: ["vegan", "dairy-free"],
+    ingredients: ["Single-origin espresso beans"],
+    allergens: [],
+    calories: 5,
     imageUrl: "/images/menu/classic-espresso.jpg",
   },
   {
@@ -33,6 +39,9 @@ const items = [
     category: "coffee",
     servedAs: ["iced"],
     dietaryTags: ["vegan", "dairy-free"],
+    ingredients: ["Cold brew concentrate", "House vanilla syrup", "Ice"],
+    allergens: [],
+    calories: 110,
     imageUrl: "/images/menu/vanilla-cold-brew.jpg",
   },
   {
@@ -43,6 +52,9 @@ const items = [
     category: "coffee",
     servedAs: ["hot"],
     dietaryTags: [],
+    ingredients: ["Ristretto espresso", "Steamed whole milk"],
+    allergens: ["dairy"],
+    calories: 150,
     imageUrl: "/images/menu/flat-white.jpg",
   },
   {
@@ -53,6 +65,9 @@ const items = [
     category: "coffee",
     servedAs: ["hot", "iced"],
     dietaryTags: [],
+    ingredients: ["Espresso", "Dark chocolate", "Steamed milk"],
+    allergens: ["dairy"],
+    calories: 260,
     imageUrl: "/images/menu/mocha.jpg",
   },
 
@@ -64,6 +79,9 @@ const items = [
     price: 280,
     category: "pastry",
     dietaryTags: [],
+    ingredients: ["Flour", "Butter", "Yeast", "Milk", "Salt"],
+    allergens: ["gluten", "dairy"],
+    calories: 320,
     imageUrl: "/images/menu/butter-croissant.jpg",
   },
   {
@@ -73,6 +91,9 @@ const items = [
     price: 350,
     category: "pastry",
     dietaryTags: [],
+    ingredients: ["Butter croissant", "Almond cream", "Sliced almonds", "Powdered sugar"],
+    allergens: ["nuts", "dairy", "gluten"],
+    calories: 410,
     imageUrl: "/images/menu/almond-croissant.jpg",
   },
   {
@@ -82,6 +103,9 @@ const items = [
     price: 300,
     category: "pastry",
     dietaryTags: [],
+    ingredients: ["Flour", "Butter", "Dark chocolate batons", "Yeast"],
+    allergens: ["gluten", "dairy"],
+    calories: 350,
     imageUrl: "/images/menu/pain-au-chocolat.jpg",
   },
   {
@@ -91,6 +115,9 @@ const items = [
     price: 320,
     category: "pastry",
     dietaryTags: ["gluten-free"],
+    ingredients: ["Ripe bananas", "Gluten-free flour blend", "Eggs", "Brown sugar"],
+    allergens: ["eggs"],
+    calories: 280,
     imageUrl: "/images/menu/gf-banana-muffin.jpg",
   },
 
@@ -102,15 +129,21 @@ const items = [
     price: 380,
     category: "cake",
     dietaryTags: [],
+    ingredients: ["Carrots", "Walnuts", "Flour", "Cream cheese frosting", "Cinnamon"],
+    allergens: ["nuts", "gluten", "dairy", "eggs"],
+    calories: 430,
     imageUrl: "/images/menu/carrot-cake-slice.jpg",
   },
   {
     name: "Vegan Chocolate Cake",
     slug: "vegan-chocolate-cake",
-    description: "Rich, dense, no eggs or dairy — and no one asks either.",
+    description: "Rich, dense, no eggs or dairy and no one asks either.",
     price: 400,
     category: "cake",
     dietaryTags: ["vegan", "dairy-free"],
+    ingredients: ["Flour", "Cocoa", "Plant milk", "Coconut oil", "Cane sugar"],
+    allergens: ["gluten", "soy"],
+    calories: 390,
     imageUrl: "/images/menu/vegan-chocolate-cake.jpg",
   },
   {
@@ -118,8 +151,12 @@ const items = [
     slug: "lemon-drizzle-cake",
     description: "Sharp lemon syrup soaked into the crumb while it's still warm.",
     price: 360,
+    compareAtPrice: 420,
     category: "cake",
     dietaryTags: [],
+    ingredients: ["Flour", "Butter", "Eggs", "Lemon", "Sugar"],
+    allergens: ["gluten", "dairy", "eggs"],
+    calories: 370,
     imageUrl: "/images/menu/lemon-drizzle-cake.jpg",
   },
 ];
