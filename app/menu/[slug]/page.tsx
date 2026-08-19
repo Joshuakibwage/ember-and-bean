@@ -19,9 +19,9 @@ async function getItem(slug: string) {
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
     const { slug } = await params;
     const item = await getItem(slug);
-    if (!item) return { title: "Item not found — Ember & Bean" };
+    if (!item) return { title: "Item not found - Ember & Bean" };
     return {
-        title: `${item.name} — Ember & Bean`,
+        title: `${item.name} - Ember & Bean`,
         description: item.description,
     };
 }
@@ -33,11 +33,11 @@ export default async function MenuItemPage({ params }: { params: Params }) {
     if (!item) notFound();
 
     return (
-        <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
+        <div className="container mx-auto max-w-5xl px-4 py-10 sm:px-6">
         <Breadcrumb category={item.category} name={item.name} />
 
         <div className="mt-6 grid grid-cols-1 gap-10 md:grid-cols-2">
-            <div className="relative aspect-square overflow-hidden rounded-3xl border border-border">
+            <div className="relative aspect-square overflow-hidden rounded-md border border-border">
                 <Image 
                     src={item.imageUrl} 
                     alt={item.name} 
@@ -52,7 +52,7 @@ export default async function MenuItemPage({ params }: { params: Params }) {
                 {item.dietaryTags.map((tag) => (
                     <span
                         key={tag}
-                        className="rounded-full border border-border px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground"
+                        className="rounded-md border border-border px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground"
                     >
                         {tag}
                     </span>
