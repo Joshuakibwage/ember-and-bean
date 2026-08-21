@@ -14,7 +14,7 @@ const CallToAction = () => {
           Skip the queue. Order ahead.
         </h2>
         <p className="mt-3 max-w-md text-sm text-primary-foreground/80">
-          Have it ready by the time you walk in — pickup or delivery, your call.
+          Have it ready by the time you walk in pickup or delivery, your call.
         </p>
         <Button
           size="lg"
