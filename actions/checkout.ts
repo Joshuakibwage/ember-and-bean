@@ -49,10 +49,6 @@ export async function startCheckout(input: CheckoutInput) {
         payment: { provider: "paystack", reference, status: "pending" }
     });
 
-    console.log("Paystack key present:", !!process.env.PAYSTACK_SECRET_KEY);
-console.log("Paystack key prefix:", process.env.PAYSTACK_SECRET_KEY?.slice(0, 7));
-
-
     const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {
         method: "POST",
         headers: {
@@ -78,5 +74,57 @@ console.log("Paystack key prefix:", process.env.PAYSTACK_SECRET_KEY?.slice(0, 7)
 
     return { authorizationUrl: data.data.authorization_url };
 
+};
+
+
+
+export async function verifyPayment(reference: string) {
+    await connectDB();
+
+    const order = await Order.findOne({"payment.reference": reference});
+
+    if(!order) {
+        return { success: false, message: "We couldn't find that order!"};
+    }
+
+    //already verified don't reprocess(eg. this page is refreshed)
+    if(order.payment.status === "success") {
+        return { success: true, order: serializeOrder(order)}
+    }
+
+    const paystackRes = await fetch(`https://api.paystack.co/transaction/verify/${reference}`, {
+        headers: {
+            Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`
+        },
+    })
+
+    const data = await paystackRes.json();
+
+    const paystackSuccess = data.status && data.data?.status === "success"
+
+    const amountMatches = data.data?.amount === Math.round(order.total * 100)
+
+    if(paystackSuccess && amountMatches) {
+        order.payment.status = "success";
+        order.status = "paid";
+        await order.save();
+        return {
+            success: true, order: serializeOrder(order)
+        }
+    }
+
+    order.payment.status = "failed";
+    await order.save();
+    return {
+        success: false,
+        message: amountMatches 
+            ? "Payment could not be verified."
+            : "Payment amount didn't match the order, please contact us.",
+    }
+};
+
+
+function serializeOrder(order: InstanceType<typeof order>) {
+    return JSON.parse(JSON.stringify(order));
 }
 

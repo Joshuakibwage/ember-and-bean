@@ -95,7 +95,11 @@ const AddToCartPanel = ({ item }: { item: MenuItem }) => {
             </button>
           </div>
 
-          <Button onClick={handleAddToCart} size="lg" className="flex-1 gap-2 rounded-full">
+          <Button 
+            onClick={handleAddToCart} 
+            size="lg" 
+            className="flex-1 gap-2 rounded-full"
+          >
             {justAdded ? (
               <>
                 <Check size={16} /> Added
