@@ -6,6 +6,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import FeaturedMenuSkeleton from "@/components/sections/FeaturedMenuSkeleton";
 import FeaturedMenuSection from "@/components/sections/FeaturedMenuSection";
 import Testimonials from "@/components/sections/Testimonials";
+import Location from "@/components/sections/Location";
 
 
 const HomePage = () => {
@@ -22,6 +23,7 @@ const HomePage = () => {
         </Suspense>
       </ErrorBoundary>
       <Testimonials /> 
+      <Location />
     </section>
   );
 }
