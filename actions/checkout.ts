@@ -49,11 +49,14 @@ export async function startCheckout(input: CheckoutInput) {
         payment: { provider: "paystack", reference, status: "pending" }
     });
 
+    console.log("Paystack key present:", !!process.env.PAYSTACK_SECRET_KEY);
+console.log("Paystack key prefix:", process.env.PAYSTACK_SECRET_KEY?.slice(0, 7));
+
 
     const paystackRes = await fetch("https://api.paystack.co/transaction/initialize", {
         method: "POST",
-        Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
         headers: {
+            Authorization: `Bearer ${process.env.PAYSTACK_SECRET_KEY}`,
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
