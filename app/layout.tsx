@@ -3,6 +3,7 @@ import { Public_Sans, Geist_Mono, Italianno } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/auth/Navbar";
 import { CartProvider } from "@/context/cartContext";
+import Footer from "@/components/shared/Footer";
 
 
 const publicSans = Public_Sans({
@@ -36,6 +37,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <CartProvider>
           <Navbar />
           {children}
+          <Footer />
         </CartProvider>
       </body>
     </html>
