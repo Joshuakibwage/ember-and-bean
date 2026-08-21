@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 
 import HeroSection from "@/components/sections/HeroSection.tsx";
-// import FeaturedMenu from "@/components/sections/FeaturedMenu.tsx";
+
 import ErrorBoundary from "@/components/ErrorBoundary";
 import FeaturedMenuSkeleton from "@/components/sections/FeaturedMenuSkeleton";
 import FeaturedMenuSection from "@/components/sections/FeaturedMenuSection";
+import Testimonials from "@/components/sections/Testimonials";
 
 
 const HomePage = () => {
@@ -20,7 +21,7 @@ const HomePage = () => {
           <FeaturedMenuSection />
         </Suspense>
       </ErrorBoundary>
-      {/* <FeaturedMenu /> */}
+      <Testimonials /> 
     </section>
   );
 }

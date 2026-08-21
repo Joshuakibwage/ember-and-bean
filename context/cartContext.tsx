@@ -61,7 +61,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return { items: state.items.filter((i) => lineId(i) !== action.payload.lineId) };
 
     case "CLEAR_CART":
-      return { items: [] };
+      return state.items.length === 0 ? state : { items: [] };
 
     default:
       return state;

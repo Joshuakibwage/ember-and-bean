@@ -1,7 +1,7 @@
 // components/checkout/verify-result.tsx
 'use client';
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,13 +19,15 @@ type VerifyResultProps = {
 };
 
 const VerifyResult = ({ success, message, order }: VerifyResultProps) => {
-    
+
     const { clearCart } = useCart();
+    const hasCleared = useRef(false);
 
     useEffect(() => {
-            if (success) {
+        if (success && !hasCleared.current) {
+            hasCleared.current = true
             clearCart();
-            }
+        }
         
     }, [success, clearCart]);
 

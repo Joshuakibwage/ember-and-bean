@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 
 type HeroProps = {
@@ -25,8 +26,15 @@ const HeroSection = ({ imageSrc, imageAlt = "Inside Ember & Bean" }: HeroProps) 
         aria-hidden="true"
         className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent"
       />
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-14 pt-2 sm:px-6 md:flex-row md:items-end md:justify-between md:pb-16">
-        <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 motion-safe:duration-700 max-w-xl">
+      <div className={cn(
+          "relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pb-14 pt-2 sm:px-6 ",
+          "md:flex-row md:items-end md:justify-between md:pb-16"
+        )}
+      >
+        <div className={cn(
+          "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-3 ",
+          "motion-safe:duration-700 max-w-xl"
+        )}>
 
           <h1 className="mt-5 font-heading text-4xl leading-[1.08] text-primary-foreground sm:text-5xl md:text-6xl">
             Every batch, roasted in-house.
@@ -40,29 +48,32 @@ const HeroSection = ({ imageSrc, imageAlt = "Inside Ember & Bean" }: HeroProps) 
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Button 
-              // asChild 
-              size="lg" 
-              className="rounded-md text-lg px-3 py-6"
-            >
-              <Link href="/menu" className="flex gap-2 items-center ">
-                View the menu
-                <ArrowRight size={16} className="ml-1.5" />
-              </Link>
-            </Button>
             <Button
-              // asChild
+              size="lg"
+              className="rounded-md text-lg px-3 py-6"
+              nativeButton={false}
+              render={
+                <Link href="/menu" className="flex items-center gap-2">
+                  View the menu
+                  <ArrowRight size={16} className="ml-1.5" />
+                </Link>
+              }
+            />
+            <Button
               size="lg"
               variant="outline"
               className="rounded-md border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground text-lg py-6 px-3"
-            >
-              <Link href="/about#location">Find us</Link>
-            </Button>
+              nativeButton={false}
+              render={<Link href="/about#location">Find us</Link>}
+            />
           </div>
         </div>
 
         {/* status ticket — continues the ticket motif from auth/nav */}
-        <div className="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 motion-safe:delay-200 relative shrink-0 rounded-md bg-card/95 px-5 py-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] backdrop-blur-sm">
+        <div className={cn(
+          "motion-safe:animate-in motion-safe:fade-in motion-safe:duration-700 motion-safe:delay-200 relative",
+          "shrink-0 rounded-md bg-card/95 px-5 py-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)] backdrop-blur-sm"
+        )}>
           <div className="flex items-center gap-2">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60 motion-reduce:animate-none" />
