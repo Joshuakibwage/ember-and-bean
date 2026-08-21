@@ -7,6 +7,7 @@ import FeaturedMenuSkeleton from "@/components/sections/FeaturedMenuSkeleton";
 import FeaturedMenuSection from "@/components/sections/FeaturedMenuSection";
 import Testimonials from "@/components/sections/Testimonials";
 import Location from "@/components/sections/Location";
+import CallToAction from "@/components/sections/CallToAction";
 
 
 const HomePage = () => {
@@ -24,6 +25,7 @@ const HomePage = () => {
       </ErrorBoundary>
       <Testimonials /> 
       <Location />
+      <CallToAction />
     </section>
   );
 }
