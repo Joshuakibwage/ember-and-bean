@@ -74,7 +74,7 @@ const SubmitButton = ({ success }: { success?: boolean }) => {
     const { pending } = useFormStatus();
 
     return (
-        <Button type="submit" disabled={pending} className="gap-2 rounded-md">
+        <Button type="submit" disabled={pending} className="gap-2 rounded-md cursor-pointer">
             {pending ? (
                 <Loader2 className="animate-spin" size={16} />
             ) : success ? (
