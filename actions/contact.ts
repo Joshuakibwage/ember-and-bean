@@ -21,7 +21,7 @@ export async function sendContactMessage(
 ):  Promise<ContactState> {
 
     const name = formData.get("name") as string;
-    const email = formData.get("email") as strong;
+    const email = formData.get("email") as string;
     const message = formData.get("message") as string;
 
     const errors: ContactState["errors"] = {};
@@ -32,7 +32,7 @@ export async function sendContactMessage(
 
     if(!message || message.trim().length < 10) errors.message = "Message is a bit short.";
 
-    if(object.keys(errors).length > 0) {
+    if(Object.keys(errors).length > 0) {
         return { errors }
     }
 
@@ -41,5 +41,5 @@ export async function sendContactMessage(
     await contactMessage.create({ name, email, message });
 
     return { success: true };
-    
+
 }
