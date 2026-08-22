@@ -26,7 +26,7 @@ export default async function ProfilePage () {
     if( !user ) return null;
 
     return (
-        <div className="container mx-auto max-w-2xl px-4 py-12 sm:px-6">
+        <div className="container mx-auto max-w-2xl min-h-screen px-4 py-12 sm:px-6">
             <h1 className="font-heading text-3xl text-foreground">Your account</h1>
             <p className="mt-1 text-sm text-muted-foreground">
                 Hi, {user.firstName} manage your details and see past orders!

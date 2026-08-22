@@ -76,9 +76,12 @@ const Nav = ({ user }: { user: NavUser }) => {
               Log in
             </Link>
 
-            <Button asChild size="sm" className="rounded-full">
-              <Link href="/register">Sign up</Link>
-            </Button>
+            <Button
+              size="sm"
+              className="rounded-full"
+              nativeButton={false}
+              render={<Link href="/register">Sign up</Link>}
+            />
           </>
         ) : (
           <>
