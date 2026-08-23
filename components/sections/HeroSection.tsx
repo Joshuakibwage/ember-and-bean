@@ -48,12 +48,13 @@ const HeroSection = ({ imageSrc, imageAlt = "Inside Ember & Bean" }: HeroProps) 
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
+            
             <Button
               size="lg"
-              className="rounded-md text-lg px-3 py-6"
+              className="rounded-md bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground text-lg py-6 px-3"
               nativeButton={false}
               render={
-                <Link href="/menu" className="flex items-center gap-2">
+                <Link href="/menu">
                   View the menu
                   <ArrowRight size={16} className="ml-1.5" />
                 </Link>

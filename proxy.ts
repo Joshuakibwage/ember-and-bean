@@ -2,11 +2,13 @@ import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 
 export default auth((req) => {
-  const { nextUrl } = req;
-  const user = req.auth?.user;
-  const isLoggedIn = !!user;
+    const { nextUrl } = req;
+    const user = req.auth?.user;
+    const isLoggedIn = !!user;
+
 
   const isAdminRoute = nextUrl.pathname.startsWith("/private/dashboard");
+
   const isAccountRoute =
     nextUrl.pathname.startsWith("/profile") ||
     nextUrl.pathname.startsWith("/checkout");

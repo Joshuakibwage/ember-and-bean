@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/auth/Navbar";
 import { CartProvider } from "@/context/cartContext";
 import Footer from "@/components/shared/Footer";
+import SiteChrome from "@/components/SiteChrome";
 
 
 const publicSans = Public_Sans({
@@ -35,9 +36,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <CartProvider>
-          <Navbar />
-          {children}
-          <Footer />
+          <SiteChrome navbar={<Navbar />} footer={<Footer />}>
+            {children}
+          </SiteChrome>
         </CartProvider>
       </body>
     </html>
