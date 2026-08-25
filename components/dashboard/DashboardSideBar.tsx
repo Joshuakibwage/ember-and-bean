@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Coffee, Receipt, Users, PanelLeftClose, PanelLeft } from "lucide-react";
+import { LayoutDashboard, Coffee, Receipt, Users, PanelLeftClose, PanelLeft, Inbox } from "lucide-react";
 
 const navItems = [
   { href: "/private/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/private/dashboard/menu", label: "Menu", icon: Coffee },
   { href: "/private/dashboard/orders", label: "Orders", icon: Receipt },
   { href: "/private/dashboard/customers", label: "Customers", icon: Users },
+  { href: "/private/dashboard/inbox", label: "Inbox", icon: Inbox }
 ];
 
 const DashboardSidebar = ({
