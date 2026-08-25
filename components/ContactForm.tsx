@@ -18,7 +18,7 @@ const ContactForm = () => {
 
     if(state.success) {
         return(
-            <div className="flex flex-col items-start rounded-md border border-border bg-card p-8">
+            <div className="flex flex-col  items-start rounded-md border border-border bg-card p-8">
                 <CheckCircle2 size={18} className="text-primary"/>
                 <h2 className="mt-4 font-heading text-xl text-card-foreground">Message Sent.</h2>
                 <p className="mt-1.5 text-sm text-muted-foreground">

@@ -51,7 +51,7 @@ const InboxTable = ({ messages }: { messages: InboxMessage[] }) => {
                       }`}
                     >
                       {m.name}{" "}
-                      <span className="font-normal text-muted-foreground">:   {m.message}</span>
+                      <span className="font-normal text-muted-foreground">: {m.message}</span>
                     </p>
                   </div>
                   <span className="shrink-0 font-mono text-xs text-muted-foreground">
