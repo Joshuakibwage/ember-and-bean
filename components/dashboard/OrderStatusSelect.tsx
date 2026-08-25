@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useTransition } from "react";
-import { updateOrderStatus } from "@/actions/order-admin";
+import { updateOrderStatus } from "@/actions/orderAdmin";
 import { Loader2 } from "lucide-react";
 
 const STATUSES = ["pending", "paid", "preparing", "ready", "completed", "cancelled"];

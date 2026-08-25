@@ -7,8 +7,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import StatusBadge from "./status-badge";
-import OrderStatusSelect from "./order-status-select";
+import StatusBadge from "./StatusBadge";
+import OrderStatusSelect from "./OrderStatusSelect";
 import type { OrderDetail } from "@/types/order";
 
 const OrderDetailDialog = ({

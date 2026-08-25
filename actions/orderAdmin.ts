@@ -1,7 +1,7 @@
 "use server";
 
 import connectDB from "@/lib/db";
-import Order from "@/models/Order";
+import Order from "@/models/order";
 import { revalidatePath } from "next/cache";
 
 const VALID_STATUSES = ["pending", "paid", "preparing", "ready", "completed", "cancelled"] as const;
