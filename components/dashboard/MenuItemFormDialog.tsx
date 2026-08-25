@@ -15,7 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { createMenuItem, updateMenuItem, type MenuItemFormState } from "@/actions/menu-admin";
+import { createMenuItem, updateMenuItem, type MenuItemFormState } from "@/actions/menuAdmin";
 import type { MenuItem } from "@/types/menu-item";
 
 const CATEGORIES = ["coffee", "pastry", "cake"] as const;
@@ -171,7 +171,7 @@ const CheckboxGroup = ({
 const SubmitButton = ({ isEdit }: { isEdit: boolean }) => {
 
     const { pending } = useFormStatus();
-    
+
     return (
         <Button type="submit" disabled={pending} className="w-full gap-2 rounded-full">
             {pending ? <Loader2 className="animate-spin" size={16} /> : isEdit ? "Save changes" : "Create item"}
