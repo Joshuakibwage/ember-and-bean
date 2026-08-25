@@ -1,11 +1,17 @@
-import React from 'react'
+import connectDB from "@/lib/db";
+import ContactMessage from "@/models/contactMessage";
+import InboxTable from "@/components/dashboard/InboxTable";
 
-const InboxPage = () => {
+export default async function AdminInboxPage() {
+  await connectDB();
+  const messages = await ContactMessage.find().sort({ createdAt: -1 }).lean();
+
   return (
-    <div>
-      Inbox Page
-    </div>
-  )
+    <InboxTable
+      messages={JSON.parse(JSON.stringify(messages)).map((m: { _id: string }) => ({
+        ...m,
+        id: m._id,
+      }))}
+    />
+  );
 }
-
-export default InboxPage
