@@ -3,14 +3,23 @@ import { auth } from "@/auth";
 import DashboardShell from "@/components/dashboard/DashboardShell";
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth();
 
-  if (!session?.user) {
-    redirect("/login");
-  }
-  if (session.user.role !== "admin") {
-    redirect("/");
-  }
+    const session = await auth();
 
-  return <DashboardShell>{children}</DashboardShell>;
+    if (!session?.user) {
+      redirect("/login");
+    }
+    
+    if (session.user.role !== "admin") {
+      redirect("/");
+    }
+
+    return (
+      <DashboardShell 
+       user={{ firstName: session.user.firstName, email: session.user.email! }}
+      >
+        {children}
+      </DashboardShell>
+    )
 }
+    

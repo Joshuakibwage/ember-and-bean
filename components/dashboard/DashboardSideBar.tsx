@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutDashboard, Coffee, Receipt, Users, PanelLeftClose, PanelLeft, Inbox } from "lucide-react";
+import SidebarUserMenu from "./SidebarUserMenu";
 
 const navItems = [
   { href: "/private/dashboard", label: "Overview", icon: LayoutDashboard },
@@ -15,10 +16,13 @@ const navItems = [
 const DashboardSidebar = ({
   collapsed,
   onToggle,
+  user
 }: {
   collapsed: boolean;
   onToggle: () => void;
+  user: {firstName: string; email: string };
 }) => {
+
   const pathname = usePathname();
 
   return (
@@ -72,6 +76,8 @@ const DashboardSidebar = ({
           );
         })}
       </nav>
+
+      <SidebarUserMenu firstName={user.firstName} email={user.email} collapsed={collapsed} />
     </aside>
   );
 };

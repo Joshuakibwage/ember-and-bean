@@ -6,6 +6,8 @@ import StatusChart from "@/components/dashboard/StatusChart";
 import TopItemsChart from "@/components/dashboard/TopItemsChart";
 import { Coffee, Clock, Users, Wallet } from "lucide-react";
 import Link from "next/link";
+import Greeting from "@/components/dashboard/Greetings";
+import { auth } from "@/auth";
 
 type RecentOrder = {
   _id: string;
@@ -15,12 +17,17 @@ type RecentOrder = {
 };
 
 export default async function DashboardOverview() {
+
+    const session = await auth();
+
   const [{ todayOrders, pendingOrders, totalCustomers, todayRevenue, recentOrders }, chartData] =
     await Promise.all([getDashboardStats(), getChartData()]);
 
   return (
     <div>
       <h1 className="font-heading text-2xl text-foreground">Overview</h1>
+
+      <Greeting firstName={session?.user?.firstName ?? "there"} />
 
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard icon={Coffee} label="Orders today" value={todayOrders} />
