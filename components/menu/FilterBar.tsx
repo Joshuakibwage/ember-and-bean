@@ -124,7 +124,7 @@ const FilterBar = ({ activeCategory, activeDiet, activeSort }: FilterBarProps ) 
                                     key={d.value}
                                     type="button"
                                     onClick={() => updateParam("diet", activeDiet === d.value ? null : d.value)}
-                                    aria={activeDiet === d.value}
+                                    aria-pressed={activeDiet === d.value}
                                     className={
                                         `rounded-md border px-3 py-1 font-mono text-xs uppercase tracking-wide transition-colors ${ activeDiet === d.value 
                                         ? "border-primary bg-accent text-accent-foreground"
@@ -136,8 +136,8 @@ const FilterBar = ({ activeCategory, activeDiet, activeSort }: FilterBarProps ) 
                             ))
                         }
                     </div>
-                </div>
-            {/* Clear filters */}
+
+                    {/* Clear filters */}
                 <Button
                     type="button"
                     variant="ghost"
@@ -146,6 +146,8 @@ const FilterBar = ({ activeCategory, activeDiet, activeSort }: FilterBarProps ) 
                 >
                     Clear filters
                 </Button>
+                </div>
+            
             </div>
 
         </div>
