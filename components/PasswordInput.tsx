@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import type { ComponentProps } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-const PasswordInput = () => {
+type PasswordInputProps = ComponentProps<typeof Input>;
+
+const PasswordInput = ({ className, ...props }: PasswordInputProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -15,7 +18,8 @@ const PasswordInput = () => {
         type={showPassword ? "text" : "password"}
         placeholder="Your password"
         required
-        className="pr-10"
+        className={`pr-10 ${className ?? ""}`}
+        {...props}
       />
 
       <button

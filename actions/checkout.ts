@@ -124,7 +124,7 @@ export async function verifyPayment(reference: string) {
 };
 
 
-function serializeOrder(order: InstanceType<typeof order>) {
+function serializeOrder(order: InstanceType<typeof Order>) {
     return JSON.parse(JSON.stringify(order));
 }
 

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 
-import HeroSection from "@/components/sections/HeroSection.tsx";
+import HeroSection from "@/components/sections/HeroSection";
 
 import ErrorBoundary from "@/components/ErrorBoundary";
 import FeaturedMenuSkeleton from "@/components/sections/FeaturedMenuSkeleton";

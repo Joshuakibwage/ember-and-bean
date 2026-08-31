@@ -1,15 +1,17 @@
-// components/featured-menu.tsx
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+
 export type FeaturedItem = {
-  id: string;
+  id?: string;
+  _id?: string | { toString(): string };
   slug: string;
   name: string;
-  price: string;
   description: string;
-  imageSrc: string;
+  price: number;
+  imageUrl: string;
   tag?: string;
 };
 
@@ -46,9 +48,11 @@ const FeaturedMenu = ({ items }: FeaturedMenuProps) => {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item) => (
+          {items.map((item) => {
+            const itemKey = item._id ? String(item._id) : item.id ?? item.slug;
+            return (
             <Link
-              key={item._id}
+              key={itemKey}
               href={`/menu/${item.slug}`}
               className="group rounded-md border border-border bg-card outline-none ring-ring ring-offset-2 ring-offset-background transition-shadow hover:shadow-lg focus-visible:ring-2"
             >
@@ -84,7 +88,8 @@ const FeaturedMenu = ({ items }: FeaturedMenuProps) => {
                 </p>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

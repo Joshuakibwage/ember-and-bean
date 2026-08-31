@@ -44,28 +44,24 @@ export async function updateProfile(
 }
 
 
-const login = async (formData: FormData) => {
+const login = async (formData: FormData): Promise<void> => {
     const email = formData.get('email') as string;
-
     const password = formData.get('password') as string;
 
     try {
-
         await signIn("credentials", {
             redirect: false,
             callbackUrl: "/",
             email,
             password,
-        })
-        
+        });
     } catch (error) {
-        const someError = error as CredentialsSignin
-
-        return someError.cause
+        console.error("Login failed", error);
+        throw error;
     }
 
-    redirect("/")
-}
+    redirect("/");
+};
 
 
 const register = async (formData: FormData) => {

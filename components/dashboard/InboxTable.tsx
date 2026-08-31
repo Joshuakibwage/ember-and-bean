@@ -5,7 +5,7 @@ import { Mail, MailOpen, Trash2 } from "lucide-react";
 import MessageDetailDialog from "./MessageDetailDialog";
 import DeleteConfirmDialog from "./DeleteConfirmDialog";
 import { deleteMessage } from "@/actions/inbox";
-import type { InboxMessage } from "@/types/inbox";
+import type { InboxMessage } from "@/types/ibox";
 
 const InboxTable = ({ messages }: { messages: InboxMessage[] }) => {
   const [selected, setSelected] = useState<InboxMessage | null>(null);

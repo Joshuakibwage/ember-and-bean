@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { createMenuItem, updateMenuItem, type MenuItemFormState } from "@/actions/menuAdmin";
-import type { MenuItem } from "@/types/menu-item";
+import type { MenuItem } from "@/types/menuItem";
 
 const CATEGORIES = ["coffee", "pastry", "cake"] as const;
 const SERVED_AS = ["hot", "iced"] as const;

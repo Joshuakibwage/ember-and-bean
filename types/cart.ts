@@ -1,5 +1,5 @@
 
-import type { MenuItem } from "@/types/menu-item";
+import type { MenuItem } from "@/types/menuItem";
 
 export type CartItem = {
     slug: string;

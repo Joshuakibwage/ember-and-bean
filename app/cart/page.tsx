@@ -19,9 +19,12 @@ export default function CartPage() {
         <p className="mt-1.5 text-sm text-muted-foreground">
           Nothing here yet the menu has a few things worth fixing that.
         </p>
-        <Button asChild size="lg" className="mt-6 rounded-full">
-          <Link href="/menu">Browse the menu</Link>
-        </Button>
+        <Link
+          href="/menu"
+          className="mt-6 inline-flex h-9 items-center justify-center rounded-full bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Browse the menu
+        </Link>
       </div>
     );
   }
@@ -111,15 +114,16 @@ export default function CartPage() {
             Taxes calculated at checkout.
           </p>
 
-          <Button asChild size="lg" className="mt-5 w-full gap-2 rounded-md group cursor-pointer">
-            <Link href="/checkout" className="flex gap-2 items-center">
-              Checkout
-              <ArrowRight 
-                size={16} 
-                className="group-hover:translate-x-1 transition-transform delay-200 ease-out"
-              />
-            </Link>
-          </Button>
+          <Link
+            href="/checkout"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Checkout
+            <ArrowRight
+              size={16}
+              className="transition-transform delay-200 ease-out group-hover:translate-x-1"
+            />
+          </Link>
 
           <Link
             href="/menu"

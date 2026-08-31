@@ -23,9 +23,11 @@ const MenuGrid = ({ items }: MenuGridProps) => {
 
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {items.map((item) => (
+      {items.map((item) => {
+        const itemKey = item._id ? String(item._id) : item.id ?? item.slug;
+        return (
         <Link
-          key={item._id}
+          key={itemKey}
           href={`/menu/${item.slug}`}
           className="group rounded-md border border-border bg-card outline-none ring-ring ring-offset-2 ring-offset-background transition-shadow hover:shadow-lg focus-visible:ring-2"
         >
@@ -49,7 +51,8 @@ const MenuGrid = ({ items }: MenuGridProps) => {
             <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
           </div>
         </Link>
-      ))}
+        );
+      })}
     </div>
   );
 };

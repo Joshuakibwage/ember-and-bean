@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { markMessageRead } from "@/actions/inbox";
-import type { InboxMessage } from "@/types/inbox";
+import type { InboxMessage } from "@/types/ibox";
 
 const MessageDetailDialog = ({
     message,
